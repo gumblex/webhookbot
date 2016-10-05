@@ -13,6 +13,7 @@ logging.basicConfig(stream=sys.stderr, format='%(asctime)s [%(name)s:%(levelname
 
 HSession = requests.Session()
 app = bottle.Bottle()
+application = bottle.default_app()
 
 class AttrDict(dict):
     def __init__(self, *args, **kwargs):
