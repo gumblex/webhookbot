@@ -66,7 +66,8 @@ def apply_format(d, *args, **kwargs):
         if isinstance(v, str):
             d[k] = v.format(*args, **kwargs)
 
-@bottle.route('/<mount:path>')
+@bottle.get('/<mount:path>')
+@bottle.post('/<mount:path>')
 def webhook(mount):
     try:
         hook = CFG.hooks[mount].copy()
