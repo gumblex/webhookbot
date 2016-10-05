@@ -12,7 +12,6 @@ import bottle
 logging.basicConfig(stream=sys.stderr, format='%(asctime)s [%(name)s:%(levelname)s] %(message)s', level=logging.DEBUG if sys.argv[-1] == '-v' else logging.INFO)
 
 HSession = requests.Session()
-app = bottle.Bottle()
 application = bottle.default_app()
 
 class AttrDict(dict):
@@ -67,7 +66,7 @@ def apply_format(d, *args, **kwargs):
         if isinstance(v, str):
             d[k] = v.format(*args, **kwargs)
 
-@app.route('/<mount:path>')
+@bottle.route('/<mount:path>')
 def webhook(mount):
     try:
         hook = CFG.hooks[mount].copy()
@@ -86,4 +85,4 @@ def webhook(mount):
 CFG = load_config()
 
 if __name__ == '__main__':
-    bottle.run(app, host='0.0.0.0', port=8080)
+    bottle.run(host='0.0.0.0', port=8080)
