@@ -1,0 +1,10 @@
+{
+"apitoken": "123456789:ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghi",
+"hooks": {
+    "uptimerobot": {
+        "method": "sendMessage",
+        "chat_id": -123456789,
+        "text": "{q.monitorFriendlyName} {q.alertTypeFriendlyName}: {q.alertDetails}"
+    }
+}
+}
