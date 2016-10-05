@@ -74,7 +74,10 @@ def webhook(mount):
         method = hook.pop('method')
     except KeyError:
         bottle.abort(404, "Mountpoint Not Found")
-    apply_format(hook, q=bottle.request.query, f=bottle.request.forms)
+    try:
+        apply_format(hook, q=bottle.request.query, f=bottle.request.forms)
+    except Exception:
+        bottle.abort(400, "Bad Query Parameters")
     try:
         return bot_api(method, **hook)
     except BotAPIFailed as ex:
